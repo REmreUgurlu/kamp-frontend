@@ -1,9 +1,14 @@
-<!-- Welcome to {{title}}
-{{student1.studentName}}
-<ul>
-  <li *ngFor="let student of students">{{student.studentName}}</li>
-</ul> -->
-<app-navi></app-navi>
-<app-room></app-room>
-<app-student></app-student>
-<router-outlet></router-outlet>
+<div class="container">
+  <app-navi></app-navi>
+  <div class="row">
+    <div class="col-md-3">
+      <app-room></app-room>
+    </div>
+    <div class="col-md-9">
+      <app-student></app-student>
+    </div>
+
+  </div>
+  <router-outlet></router-outlet>
+
+</div>

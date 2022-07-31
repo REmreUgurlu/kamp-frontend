@@ -1,8 +1,32 @@
-<table class="table">
-  <tr *ngFor="let student of students">
-    <td>{{student.studentId}}</td>
-    <td>{{student.studentName}}</td>
-    <td>{{student.roomId}}</td>
-    <td>{{student.bedId}}</td>
-  </tr>
+<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded!=false" class="table">
+  <thead>
+    <tr>
+      <td>Student ID</td>
+      <td>Student Name</td>
+      <td>Room ID</td>
+      <td>Bed ID</td>
+      <td>Citizen No</td>
+      <td>University</td>
+      <td>Education</td>
+      <td>Grade</td>
+      <td>Phone Number</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.id}}</td>
+      <td>{{student.firstName}} {{student.lastName}}</td>
+      <td>{{student.roomId}}</td>
+      <td>{{student.bedId}}</td>
+      <td>{{student.citizenNo}}</td>
+      <td>{{student.university}}</td>
+      <td>{{student.education}}</td>
+      <td>{{student.grade}}</td>
+      <td>{{student.phoneNumber}}</td>
+    </tr>
+  </tbody>
+
 </table>
