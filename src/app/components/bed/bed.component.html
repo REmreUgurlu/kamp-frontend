@@ -1,0 +1,26 @@
+<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded!=false" class="table">
+  <thead>
+    <tr>
+      <td>Bed ID</td>
+      <td>Room ID</td>
+      <td>Bed Number</td>
+      <td>Status</td>
+      <td>Price</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bed of beds">
+      <td>{{bed.id}}</td>
+      <td>{{bed.roomId}}</td>
+      <td>{{bed.bedNumber}}</td>
+      <td>{{bed.isBooked === true ? 'Is Booked' : 'Is Available'}}</td>
+      <td>{{bed.price}}</td>
+      <td>{{bed.description}}</td>
+    </tr>
+  </tbody>
+
+</table>
