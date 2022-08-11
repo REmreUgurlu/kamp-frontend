@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { ResponseModel } from '../models/responseModel';
 import { Student } from '../models/student';
 
 @Injectable({
@@ -23,5 +24,12 @@ export class StudentService {
     let newPath =
       this.apiUrl + 'students/getbyroomnumber?roomNumber=' + roomNumber;
     return this.httpClient.get<ListResponseModel<Student>>(newPath);
+  }
+
+  add(student: Student): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      this.apiUrl + 'students/add',
+      student
+    );
   }
 }

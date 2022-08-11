@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Student } from 'src/app/models/student';
+import { CartService } from 'src/app/services/cart.service';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -11,10 +13,13 @@ import { StudentService } from 'src/app/services/student.service';
 export class StudentComponent implements OnInit {
   students: Student[] = [];
   dataLoaded = false;
+  filterText = '';
 
   constructor(
     private studentService: StudentService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -41,5 +46,13 @@ export class StudentComponent implements OnInit {
         this.students = response.data;
         this.dataLoaded = true;
       });
+  }
+
+  addToCart(student: Student) {
+    this.toastrService.success(
+      'Added to Cart',
+      student.firstName + student.lastName
+    );
+    this.cartService.addToCart(student);
   }
 }

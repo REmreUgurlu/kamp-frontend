@@ -1,6 +1,15 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Search Student</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Enter search filter">
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+  you searched {{filterText}}
+</div>
+
 <table *ngIf="dataLoaded!=false" class="table">
   <thead>
     <tr>
@@ -13,10 +22,11 @@
       <td>Education</td>
       <td>Grade</td>
       <td>Phone Number</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students">
+    <tr *ngFor="let student of students | filterPipe:filterText">
       <td>{{student.id}}</td>
       <td>{{student.firstName}} {{student.lastName}}</td>
       <td>{{student.roomId}}</td>
@@ -26,6 +36,7 @@
       <td>{{student.education}}</td>
       <td>{{student.grade}}</td>
       <td>{{student.phoneNumber}}</td>
+      <td><button (click)="addToCart(student)" class="btn btn-success">Add To Cart</button></td>
     </tr>
   </tbody>
 

@@ -9,6 +9,7 @@
       <td>Bed Number</td>
       <td>Status</td>
       <td>Price</td>
+      <td>Vat Price</td>
       <td>Description</td>
     </tr>
   </thead>
@@ -18,7 +19,8 @@
       <td>{{bed.roomId}}</td>
       <td>{{bed.bedNumber}}</td>
       <td>{{bed.isBooked === true ? 'Is Booked' : 'Is Available'}}</td>
-      <td>{{bed.price}}</td>
+      <td>{{bed.price | currency:'TRY':'symbol-narrow'}}</td>
+      <td>{{bed.price | vatAdded:10 | currency:'TRY':'symbol-narrow'}}</td>
       <td>{{bed.description}}</td>
     </tr>
   </tbody>
